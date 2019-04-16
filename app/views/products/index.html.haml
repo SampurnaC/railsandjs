@@ -1,0 +1,11 @@
+- content_for(:js_footer) do
+  = javascript_include_tag "product.js"
+%h1 Suggested Products
+- @products.each do |product|
+  %h2= link_to product.name
+  = "["
+  = link_to "Add", "#", :class => "add_product", :product_id => product.id, :style => "color:#cc0000;"
+  = "]"
+%h1 Products
+
+%p= link_to "New Product", new_product_path

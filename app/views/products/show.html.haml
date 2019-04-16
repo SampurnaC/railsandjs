@@ -1,0 +1,12 @@
+%p
+  %b Name:
+  = @product.name
+%p
+  %b Price:
+  = @product.price
+%p
+  %b Category:
+  = @product.category_id && @product.category.name
+= link_to 'Edit', edit_product_path(@product)
+|
+= link_to 'Back', products_path

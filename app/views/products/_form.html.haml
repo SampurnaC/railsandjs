@@ -1,0 +1,33 @@
+#showtheaddedform
+  = form_for(@product) do |f|
+    .field
+      = f.label :name
+      %br/
+      = f.text_field :name
+    .field
+      = f.label :price
+      %br/
+      = f.text_field :price
+    .field
+      = f.label :category_id
+      %br/
+      = f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: true
+    .field
+      = f.file_field :avatar, onchange: "readURL(this);"
+      = image_tag "", id: "img_prev"
+    .actions
+      = f.submit
+:javascript
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#img_prev')
+          .attr('src', e.target.result)
+          .width(406)
+          .height(208);
+        };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
